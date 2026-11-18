@@ -1,0 +1,197 @@
+{
+  "name": "agentarts-sdk",
+  "version": "0.1.11",
+  "description": "Huawei Cloud AgentArts SDK - Build, deploy and manage AI agents with cloud capabilities",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./toolkit/plugins/memory/installer/platforms": {
+      "types": "./dist/toolkit/plugins/memory/installer/platforms/index.d.ts",
+      "import": "./dist/toolkit/plugins/memory/installer/platforms/index.js"
+    },
+    "./toolkit/plugins/memory/ai_agent/hermes": {
+      "types": "./dist/toolkit/plugins/memory/ai_agent/hermes/index.d.ts",
+      "import": "./dist/toolkit/plugins/memory/ai_agent/hermes/index.js"
+    },
+    "./toolkit/plugins/memory/installer": {
+      "types": "./dist/toolkit/plugins/memory/installer/index.d.ts",
+      "import": "./dist/toolkit/plugins/memory/installer/index.js"
+    },
+    "./toolkit/utils/templates/docker": {
+      "types": "./dist/toolkit/utils/templates/docker/index.d.ts",
+      "import": "./dist/toolkit/utils/templates/docker/index.js"
+    },
+    "./sdk/service/identity/polling": {
+      "types": "./dist/sdk/service/identity/polling/index.d.ts",
+      "import": "./dist/sdk/service/identity/polling/index.js"
+    },
+    "./sdk/tools/code_interpreter": {
+      "types": "./dist/sdk/tools/code_interpreter/index.d.ts",
+      "import": "./dist/sdk/tools/code_interpreter/index.js"
+    },
+    "./toolkit/operations/runtime": {
+      "types": "./dist/toolkit/operations/runtime/index.d.ts",
+      "import": "./dist/toolkit/operations/runtime/index.js"
+    },
+    "./toolkit/plugins/memory/mcp": {
+      "types": "./dist/toolkit/plugins/memory/mcp/index.d.ts",
+      "import": "./dist/toolkit/plugins/memory/mcp/index.js"
+    },
+    "./sdk/integration/langgraph": {
+      "types": "./dist/sdk/integration/langgraph/index.d.ts",
+      "import": "./dist/sdk/integration/langgraph/index.js"
+    },
+    "./toolkit/operations/memory": {
+      "types": "./dist/toolkit/operations/memory/index.d.ts",
+      "import": "./dist/toolkit/operations/memory/index.js"
+    },
+    "./toolkit/utils/templates": {
+      "types": "./dist/toolkit/utils/templates/index.d.ts",
+      "import": "./dist/toolkit/utils/templates/index.js"
+    },
+    "./toolkit/plugins/memory": {
+      "types": "./dist/toolkit/plugins/memory/index.d.ts",
+      "import": "./dist/toolkit/plugins/memory/index.js"
+    },
+    "./toolkit/utils/runtime": {
+      "types": "./dist/toolkit/utils/runtime/index.d.ts",
+      "import": "./dist/toolkit/utils/runtime/index.js"
+    },
+    "./sdk/service/identity": {
+      "types": "./dist/sdk/service/identity/index.d.ts",
+      "import": "./dist/sdk/service/identity/index.js"
+    },
+    "./toolkit/cli/gateway": {
+      "types": "./dist/toolkit/cli/gateway/index.d.ts",
+      "import": "./dist/toolkit/cli/gateway/index.js"
+    },
+    "./toolkit/cli/runtime": {
+      "types": "./dist/toolkit/cli/runtime/index.d.ts",
+      "import": "./dist/toolkit/cli/runtime/index.js"
+    },
+    "./toolkit/cli/memory": {
+      "types": "./dist/toolkit/cli/memory/index.d.ts",
+      "import": "./dist/toolkit/cli/memory/index.js"
+    },
+    "./sdk/tools/browser": {
+      "types": "./dist/sdk/tools/browser/index.d.ts",
+      "import": "./dist/sdk/tools/browser/index.js"
+    },
+    "./sdk/memory/inner": {
+      "types": "./dist/sdk/memory/inner/index.d.ts",
+      "import": "./dist/sdk/memory/inner/index.js"
+    },
+    "./sdk/integration": {
+      "types": "./dist/sdk/integration/index.d.ts",
+      "import": "./dist/sdk/integration/index.js"
+    },
+    "./toolkit/utils": {
+      "types": "./dist/toolkit/utils/index.d.ts",
+      "import": "./dist/toolkit/utils/index.js"
+    },
+    "./sdk/identity": {
+      "types": "./dist/sdk/identity/index.d.ts",
+      "import": "./dist/sdk/identity/index.js"
+    },
+    "./sdk/gateway": {
+      "types": "./dist/sdk/gateway/index.d.ts",
+      "import": "./dist/sdk/gateway/index.js"
+    },
+    "./sdk/runtime": {
+      "types": "./dist/sdk/runtime/index.d.ts",
+      "import": "./dist/sdk/runtime/index.js"
+    },
+    "./sdk/service": {
+      "types": "./dist/sdk/service/index.d.ts",
+      "import": "./dist/sdk/service/index.js"
+    },
+    "./toolkit/cli": {
+      "types": "./dist/toolkit/cli/index.d.ts",
+      "import": "./dist/toolkit/cli/index.js"
+    },
+    "./sdk/memory": {
+      "types": "./dist/sdk/memory/index.d.ts",
+      "import": "./dist/sdk/memory/index.js"
+    },
+    "./sdk/tools": {
+      "types": "./dist/sdk/tools/index.d.ts",
+      "import": "./dist/sdk/tools/index.js"
+    },
+    "./sdk/utils": {
+      "types": "./dist/sdk/utils/index.d.ts",
+      "import": "./dist/sdk/utils/index.js"
+    },
+    "./toolkit": {
+      "types": "./dist/toolkit/index.d.ts",
+      "import": "./dist/toolkit/index.js"
+    },
+    "./sdk": {
+      "types": "./dist/sdk/index.d.ts",
+      "import": "./dist/sdk/index.js"
+    },
+    "./sdk/*": {
+      "types": "./dist/sdk/*.d.ts",
+      "import": "./dist/sdk/*.js"
+    },
+    "./toolkit/*": {
+      "types": "./dist/toolkit/*.d.ts",
+      "import": "./dist/toolkit/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "agentarts": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "agent",
+    "ai",
+    "huawei-cloud",
+    "sdk",
+    "langchain",
+    "langgraph"
+  ],
+  "dependencies": {
+    "@huaweicloud/huaweicloud-sdk-core": "3.1.222",
+    "@huaweicloud/huaweicloud-sdk-iam": "3.1.222",
+    "@huaweicloud/huaweicloud-sdk-swr": "3.1.222",
+    "commander": "^15.1.0",
+    "huaweicloud-sdk-agentidentity": "workspace:*",
+    "undici": "^7.16.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.23.0",
+    "yaml": "^2.9.1"
+  },
+  "optionalDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "peerDependencies": {
+    "@langchain/core": ">=1.0.0",
+    "@langchain/langgraph": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@langchain/core": {
+      "optional": true
+    },
+    "@langchain/langgraph": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-assets.mjs",
+    "clean": "node ../../scripts/clean.mjs"
+  }
+}

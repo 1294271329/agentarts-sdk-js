@@ -1,0 +1,338 @@
+# config 命令使用文档
+
+## 命令用途
+
+`config` 命令用于管理 AgentArts 项目配置。支持创建、更新、查看和管理 Agent 配置信息，包括基本配置、SWR 配置和运行时配置等。
+
+> **注意**: `configure` 是 `config` 命令的别名，两者功能完全相同。
+
+## 子命令列表
+
+| 子命令 | 说明 |
+|--------|------|
+| `config` (无子命令) | 交互式配置 Agent |
+| `config list` | 列出所有已配置的 Agent |
+| `config get` | 获取配置值或 Agent 详情 |
+| `config set` | 设置配置值 |
+| `config set-default` | 设置默认 Agent |
+| `config remove` | 删除 Agent 配置 |
+| `config set-env` | 设置环境变量 |
+| `config remove-env` | 删除环境变量 |
+| `config list-env` | 列出环境变量 |
+
+## 参数解释
+
+### config (交互式配置)
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `--name` | `-n` | Agent 名称 | 否，交互式提示 |
+| `--entrypoint` | `-e` | Agent 入口函数 | 否，交互式提示 |
+| `--region` | `-r` | 华为云区域 | 否，默认 cn-southwest-2 |
+| `--dependency-file` | `-d` | 依赖文件路径 | 否，自动检测 |
+| `--swr-org` | 无 | SWR 组织名称 | 否，默认 agentarts-org |
+| `--swr-repo` | 无 | SWR 仓库名称 | 否，默认 `agent_{Agent名称}` |
+| `--set-default` | 无 | 设置为默认 Agent | 否，默认是 |
+
+### config get
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `key` | 无 | 配置键（点分隔格式） | 否，不提供则显示完整配置 |
+| `--agent` | `-a` | Agent 名称 | 否，使用默认 Agent |
+
+### config set
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `key` | 无 | 配置键（点分隔格式） | 是 |
+| `value` | 无 | 配置值 | 是 |
+| `--agent` | `-a` | Agent 名称 | 否，使用默认 Agent |
+
+### config set-default
+
+| 参数 | 说明 | 是否必填 |
+|------|------|----------|
+| `name` | Agent 名称 | 是 |
+
+### config remove
+
+| 参数 | 说明 | 是否必填 |
+|------|------|----------|
+| `name` | Agent 名称 | 是 |
+
+### config set-env
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `key` | 无 | 环境变量名称 | 是 |
+| `value` | 无 | 环境变量值 | 是 |
+| `--agent` | `-a` | Agent 名称 | 否，使用默认 Agent |
+
+### config remove-env
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `key` | 无 | 环境变量名称 | 是 |
+| `--agent` | `-a` | Agent 名称 | 否，使用默认 Agent |
+
+### config list-env
+
+| 参数 | 简写 | 说明 | 是否必填 |
+|------|------|------|----------|
+| `--agent` | `-a` | Agent 名称 | 否，使用默认 Agent |
+
+## 配置键格式
+
+配置键使用点分隔格式，支持以下路径：
+
+### 基本配置 (base.*)
+
+| 配置键 | 说明 | 示例值 |
+|--------|------|--------|
+| `base.name` | Agent 名称 | `my-agent` |
+| `base.entrypoint` | 入口函数 | `agent:app` |
+| `base.region` | 华为云区域 | `cn-southwest-2` |
+| `base.dependency_file` | 依赖文件 | `package.json` |
+| `base.platform` | 目标平台 | `linux/amd64` |
+| `base.language` | 编程语言 | `nodejs` |
+| `base.base_image` | 基础镜像 | `node:20-slim` |
+
+### SWR 配置 (swr_config.*)
+
+| 配置键 | 说明 | 示例值 |
+|--------|------|--------|
+| `swr_config.organization` | SWR 组织 | `my-org` |
+| `swr_config.repository` | SWR 仓库 | `my-repo` |
+| `swr_config.organization_auto_create` | 自动创建组织 | `true` |
+| `swr_config.repository_auto_create` | 自动创建仓库 | `true` |
+
+### 运行时配置 (runtime.*)
+
+| 配置键 | 说明 | 示例值 |
+|--------|------|--------|
+| `runtime.invoke_config.protocol` | 调用协议 | `HTTP` |
+| `runtime.invoke_config.port` | 服务端口 | `8080` |
+| `runtime.identity_configuration.authorizer_type` | 认证类型 | `IAM` |
+| `runtime.lifecycle_config.idle_session_timeout_sec` | 会话空闲超时时间（秒，60-604800） | `900` |
+| `runtime.lifecycle_config.max_alive_time_sec` | 会话最大存活时间（秒，60-604800） | `86400` |
+
+生命周期字段均为可选项。未配置或配置为 `null` 时，由服务端分别使用 900 秒和 86400 秒的默认值。
+
+## 执行效果
+
+### 交互式配置
+
+执行 `agentarts config` 后，会依次提示输入：
+1. Agent 名称（显示已有 Agent 列表）
+2. 入口函数（格式：module:export）
+3. 华为云区域（默认 cn-southwest-2）
+4. 依赖文件（自动检测 package.json）
+5. SWR 组织名称
+6. SWR 仓库名称
+
+配置完成后会：
+- 保存配置到 `.agentarts_config.yaml`
+- 自动生成 Dockerfile（如果不存在）
+
+## 使用示例
+
+### 示例 1: 交互式配置
+
+```bash
+agentarts config
+```
+
+按提示输入配置信息，适合首次配置或不确定参数时使用。
+
+### 示例 2: 快速配置
+
+```bash
+agentarts config --name my-agent --entrypoint agent:app
+```
+
+仅提供必要参数，其他使用默认值。
+
+### 示例 3: 完整参数配置
+
+```bash
+agentarts config \
+  --name my-agent \
+  --entrypoint agent:app \
+  --region cn-southwest-2 \
+  --dependency-file package.json \
+  --swr-org my-organization \
+  --swr-repo my-repository
+```
+
+### 示例 4: 列出所有 Agent
+
+```bash
+agentarts config list
+```
+
+输出示例：
+```
+Configured Agents:
+  my-agent (default)
+    Entrypoint: agent:app
+    Region: cn-southwest-2
+```
+
+### 示例 5: 查看 Agent 完整配置
+
+```bash
+agentarts config get
+```
+
+或指定 Agent：
+```bash
+agentarts config get --agent my-agent
+```
+
+### 示例 6: 获取特定配置值
+
+```bash
+agentarts config get base.region
+```
+
+输出：`cn-southwest-2`
+
+### 示例 7: 设置配置值
+
+```bash
+agentarts config set base.region cn-southwest-2
+```
+
+或指定 Agent：
+```bash
+agentarts config set base.region cn-southwest-2 --agent my-agent
+```
+
+### 示例 8: 设置默认 Agent
+
+```bash
+agentarts config set-default my-agent
+```
+
+### 示例 9: 删除 Agent 配置
+
+```bash
+agentarts config remove my-agent
+```
+
+### 示例 10: 设置环境变量
+
+```bash
+agentarts config set-env HUAWEICLOUD_SDK_AK your-access-key
+```
+
+指定 Agent：
+```bash
+agentarts config set-env HUAWEICLOUD_SDK_AK your-access-key --agent my-agent
+```
+
+如果环境变量已存在，值会被更新。
+
+### 示例 11: 列出环境变量
+
+```bash
+agentarts config list-env
+```
+
+指定 Agent：
+```bash
+agentarts config list-env --agent my-agent
+```
+
+输出示例：
+```
+  Environment Variables (my-agent)
++------------------------------------+
+| Key                | Value         |
+|--------------------+---------------|
+| HUAWEICLOUD_SDK_AK | your-ak       |
+| HUAWEICLOUD_SDK_SK | your-sk       |
++------------------------------------+
+```
+
+### 示例 12: 删除环境变量
+
+```bash
+agentarts config remove-env HUAWEICLOUD_SDK_AK
+```
+
+指定 Agent：
+```bash
+agentarts config remove-env HUAWEICLOUD_SDK_AK --agent my-agent
+```
+
+## 配置文件示例
+
+`.agentarts_config.yaml` 文件结构：
+
+```yaml
+default_agent: my-agent
+
+agents:
+  my-agent:
+    base:
+      name: my-agent
+      entrypoint: agent:app
+      dependency_file: package.json
+      platform: linux/amd64
+      language: nodejs
+      base_image: node:20-slim
+      region: cn-southwest-2
+
+    swr_config:
+      organization: my-org
+      repository: my-repo
+      organization_auto_create: true
+      repository_auto_create: true
+
+    runtime:
+      invoke_config:
+        protocol: HTTP
+        port: 8080
+      
+      artifact_source:
+        url: swr.cn-north-4.myhuaweicloud.com/org/repo:v1.0  # 可选：自定义镜像 URL
+        commands: []  # 可选：容器启动命令
+
+      identity_configuration:
+        authorizer_type: IAM
+
+      lifecycle_config:
+        idle_session_timeout_sec: 900
+        max_alive_time_sec: 86400
+
+      environment_variables:
+        - key: HUAWEICLOUD_SDK_AK
+          value: your-access-key
+        - key: HUAWEICLOUD_SDK_SK
+          value: your-secret-key
+```
+
+### artifact_source.url 配置说明
+
+`runtime.artifact_source.url` 是可选配置，用于指定自定义镜像 URL：
+
+**何时配置**：
+- 使用外部镜像仓库（Docker Hub、阿里云等）
+- 使用预构建镜像，部署时配合 `--skip-build` 参数
+- 需要指定特定版本的镜像
+
+**注意事项**：
+- `config` 命令不会自动生成此字段
+- 需要手动编辑配置文件添加
+- 如果不设置，deploy 命令会使用参数自动拼接 URL
+
+## 注意事项
+
+1. **入口函数格式**: 必须为 `module:export` 格式，例如 `agent:app`（`agent` 对应 `agent.ts` 中导出的 `app`）
+2. **区域选择**: 请选择离用户最近的区域以降低延迟
+3. **SWR 配置**: 首次使用会自动创建组织和仓库
+4. **默认 Agent**: 设置默认 Agent 后，其他命令可省略 `--agent` 参数
+5. **配置文件**: 配置保存在项目根目录的 `.agentarts_config.yaml` 文件中
+6. **环境变量管理**: 使用 `set-env` / `remove-env` / `list-env` 子命令管理运行时环境变量，环境变量会在部署时注入到运行时容器中

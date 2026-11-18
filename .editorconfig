@@ -1,0 +1,45 @@
+# EditorConfig — https://editorconfig.org
+# 统一 agentarts-sdk-js 仓库的编辑器行为（Node.js/TypeScript 移植版）。
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# TypeScript / JavaScript / MJS
+[*.{ts,mts,cts,js,mjs,cjs,jsx,tsx}]
+indent_size = 2
+max_line_length = 100
+
+# JSON / JSONC（package.json、tsconfig、plugin 清单等；package-lock 不参与格式化）
+[*.{json,jsonc}]
+indent_size = 2
+
+# YAML（pnpm-workspace.yaml、.agentarts_config.yaml、plugin.yaml、workflow）
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown：保留行尾空格（换行语义），不强制行宽
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# 模板与资源（项目中内联/原样保留的模板，避免编辑器改动空白语义）
+[*.{j2,jinja,jinja2}]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[*.{sh,bash}]
+indent_size = 2
+
+# 生成的产物与依赖不参与格式化（.gitignore 已排除，这里再声明一次）
+[{node_modules,dist,coverage}/**]
+indent_style = unset
+indent_size = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset

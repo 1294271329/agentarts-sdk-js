@@ -1,0 +1,33 @@
+{
+  "name": "huaweicloud-sdk-agentidentity",
+  "version": "3.1.222",
+  "description": "Huawei Cloud AgentIdentity SDK for Node.js (AgentArts port, v1 subset)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@huaweicloud/huaweicloud-sdk-core": "3.1.222",
+    "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node ../../scripts/clean.mjs"
+  }
+}

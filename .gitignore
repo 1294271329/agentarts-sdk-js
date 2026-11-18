@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.vitest/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.agentarts/
+*.tsbuildinfo
+package-lock.json
+
+.pnpm-store/

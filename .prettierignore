@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.pnpm-store/
+pnpm-lock.yaml
+*.tsbuildinfo
+
+# 原样保留的模板/资源与生成产物
+assets/
+tools/templates-source/
+packages/agentarts-sdk/assets/
+packages/agentarts-sdk/dist/
+
+# 文档与示例说明不参与代码格式化
+docs/
+examples/**/README.md
+tests/integration/README.md

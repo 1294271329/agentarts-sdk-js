@@ -1,0 +1,17 @@
+packages:
+  - 'packages/*'
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@langchain/langgraph-checkpoint@1.2.3'
+  - '@langchain/langgraph-sdk@1.17.0'
+  - '@langchain/langgraph@1.7.5'
+
+# `@huaweicloud/huaweicloud-sdk-core@3.1.222` imports `uuid` from
+# `http/DefaultUserAgent.js` but does not declare it (the upstream repo has it at
+# the workspace root). Declare it here so pnpm links it into the package's
+# virtual store and Node can resolve it at runtime.
+packageExtensions:
+  '@huaweicloud/huaweicloud-sdk-core':
+    dependencies:
+      uuid: ^9.0.0

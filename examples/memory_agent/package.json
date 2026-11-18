@@ -1,0 +1,25 @@
+{
+  "name": "agentarts-example-memory-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AgentArts SDK Memory Service example (TypeScript port of examples/memory_usage/agent_with_memory.py)",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "tsx agent.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "dev": "agentarts dev",
+    "deploy": "agentarts deploy",
+    "destroy": "agentarts destroy"
+  },
+  "dependencies": {
+    "agentarts-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
